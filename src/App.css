@@ -100,3 +100,14 @@ input
   border: 1px solid #052C3F;
   margin-bottom: 20px;
 }
+.results
+{
+  padding: 10px;
+  border: 1px solid #052C3F;
+  border-radius: 4px;
+}
+
+.results p
+{
+  margin: 27px 0;
+}
