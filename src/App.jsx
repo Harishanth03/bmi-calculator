@@ -51,6 +51,17 @@ function App() {
 
   }
 
+  const clear = () => 
+  {
+    setHeight("");
+
+    setWeight("");
+
+    setBmi(null);
+
+    setStatus("");
+  }
+
   return (
 
     <>
@@ -85,7 +96,7 @@ function App() {
 
             <button onClick={calculateBMI}>Calculate BMI</button>
 
-            <button>Clear</button>
+            <button onClick={clear}>Clear</button>
 
           </div>
           
