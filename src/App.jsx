@@ -1,6 +1,15 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+
+  const [height , setHeight] = useState(164);
+
+  const [weight , setWeight] = useState(60);
+
+  const [bmi , setBmi] = useState(null);
+
+  const [status , setStatus] = useState("");
 
   return (
 
@@ -20,7 +29,7 @@ function App() {
 
             <label htmlFor="Height">Height (cm)</label>
 
-            <input type="text" id='Height'/>
+            <input type="text" id='Height' value={height}/>
 
           </div>
 
@@ -28,7 +37,7 @@ function App() {
 
             <label htmlFor="Weight">Weight (Kg)</label>
 
-            <input type="text" id='Weight'/>
+            <input type="text" id='Weight' value={weight}/>
             
           </div>
 
@@ -43,9 +52,9 @@ function App() {
 
           <div className="results">
             
-            <p>Your BMI is: 30</p>
+            <p>Your BMI is: {bmi}</p>
 
-            <p>Status: Over Weight</p>
+            <p>Status: {status}</p>
 
           </div>
 
