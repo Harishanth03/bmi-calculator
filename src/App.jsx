@@ -3,13 +3,53 @@ import './App.css'
 
 function App() {
 
-  const [height , setHeight] = useState(164);
+  const [height , setHeight] = useState();
 
-  const [weight , setWeight] = useState(60);
+  const [weight , setWeight] = useState();
 
   const [bmi , setBmi] = useState(null);
 
   const [status , setStatus] = useState("");
+
+  const calculateBMI = () =>{
+
+    if(height && weight)
+    {
+
+      const heightToMeter = height / 100;
+
+      const bmiValue = weight / (heightToMeter * heightToMeter);
+
+      setBmi(bmiValue.toFixed(2));
+
+      if(bmiValue < 18.5)
+      {
+        setStatus("Under Weight")
+      }
+      else if(bmiValue >= 18.5 && bmiValue <= 22.9)
+      {
+        setStatus("Normal Weight")
+      }
+      else if(bmiValue >= 23 && bmiValue <= 24.9)
+      {
+        setStatus("Over Weight");
+      }
+      else
+      {
+        setStatus("Obese");
+      }
+
+    }
+    else
+    {
+
+      bmi(null);
+
+      status("");
+
+    }
+
+  }
 
   return (
 
@@ -29,7 +69,7 @@ function App() {
 
             <label htmlFor="Height">Height (cm)</label>
 
-            <input type="text" id='Height' value={height}/>
+            <input type="text" id='Height' value={height} onChange={(e) => setHeight(e.target.value)}/>
 
           </div>
 
@@ -37,26 +77,29 @@ function App() {
 
             <label htmlFor="Weight">Weight (Kg)</label>
 
-            <input type="text" id='Weight' value={weight}/>
+            <input type="text" id='Weight' value={weight} onChange={(e) => setWeight(e.target.value)}/>
             
           </div>
 
           <div className="button-div">
 
-            <button>Calculate BMI</button>
+            <button onClick={calculateBMI}>Calculate BMI</button>
 
             <button>Clear</button>
 
           </div>
           
 
-          <div className="results">
-            
+          {bmi !== null && (
+
+            <div className="results">
+                        
             <p>Your BMI is: {bmi}</p>
 
             <p>Status: {status}</p>
 
-          </div>
+            </div>
+          )}
 
         </div>
 
