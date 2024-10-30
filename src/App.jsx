@@ -3,17 +3,24 @@ import './App.css'
 
 function App() {
 
-  const [height , setHeight] = useState();
+  const [height , setHeight] = useState("");
 
-  const [weight , setWeight] = useState();
+  const [weight , setWeight] = useState("");
 
   const [bmi , setBmi] = useState(null);
 
   const [status , setStatus] = useState("");
 
+  const [error , setError] = useState("");
+
   const calculateBMI = () =>{
 
-    if(height && weight)
+
+
+    const isValidHeight = /^\d+$/.test(height);
+    const isValidWeight = /^\d+$/.test(weight);
+
+    if(isValidHeight && isValidWeight)
     {
 
       const heightToMeter = height / 100;
@@ -43,9 +50,11 @@ function App() {
     else
     {
 
-      bmi(null);
+      setBmi(null);
 
-      status("");
+      setStatus("");
+
+      setError("Please Enter the valied height and weight");
 
     }
 
@@ -60,6 +69,8 @@ function App() {
     setBmi(null);
 
     setStatus("");
+
+    setError("");
   }
 
   return (
@@ -81,6 +92,8 @@ function App() {
             <label htmlFor="Height">Height (cm)</label>
 
             <input type="text" id='Height' value={height} onChange={(e) => setHeight(e.target.value)}/>
+
+            {error && <p className='error'>{error}</p>}
 
           </div>
 

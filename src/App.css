@@ -103,11 +103,16 @@ input
 .results
 {
   padding: 10px;
-  border: 1px solid #052C3F;
-  border-radius: 4px;
 }
 
 .results p
 {
   margin: 27px 0;
+}
+
+.error
+{
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }
